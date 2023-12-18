@@ -82,6 +82,19 @@ func MustString(strings []string, err error) []string {
 	return strings
 }
 
+func GetRuneInput(filename string) ([][]rune, error) {
+	lines, err := GetStringInput(filename)
+	if err != nil {
+		return nil, fmt.Errorf("unable to get rune input: %w", err)
+	}
+	ret := make([][]rune, len(lines))
+	for i, line := range lines {
+		ret[i] = []rune(line)
+	}
+
+	return ret, nil
+}
+
 func GetBoards(filename string, boardSize int) ([][][]int, error) {
 	input, err := GetStringInput(filename)
 	if err != nil {
